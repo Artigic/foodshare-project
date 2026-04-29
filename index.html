@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FoodShare</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input, button { margin: 5px; padding: 8px; }
+    .card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🍱 Food Waste Sharing Platform</h1>
+
+<h3>Add Food</h3>
+<input id="name" placeholder="Food Name">
+<input id="qty" placeholder="Quantity">
+<input id="loc" placeholder="Location">
+<button onclick="addFood()">Add</button>
+
+<h3>Available Food</h3>
+<div id="list"></div>
+
+<script>
+let foods = JSON.parse(localStorage.getItem("foods")) || [];
+
+function addFood() {
+  let name = document.getElementById("name").value;
+  let qty = document.getElementById("qty").value;
+  let loc = document.getElementById("loc").value;
+
+  foods.push({name, qty, loc});
+  localStorage.setItem("foods", JSON.stringify(foods));
+  display();
+}
+
+function display() {
+  let list = document.getElementById("list");
+  list.innerHTML = "";
+  foods.forEach(f => {
+    list.innerHTML += `
+      <div class="card">
+        <b>${f.name}</b><br>
+        Qty: ${f.qty}<br>
+        Location: ${f.loc}<br>
+        <button>Claim</button>
+      </div>`;
+  });
+}
+
+display();
+</script>
+
+</body>
+</html>
