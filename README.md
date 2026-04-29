@@ -28,5 +28,4 @@ A web platform where users can share surplus food with others.
    node server.js
 2. Open index.html in browser
 
-## 📸 Screenshots
-(Add your screenshots here)
+
